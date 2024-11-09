@@ -1,0 +1,9 @@
+.formRegister{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.messageSuccess{
+    color: green;
+}

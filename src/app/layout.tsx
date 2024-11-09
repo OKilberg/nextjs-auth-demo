@@ -1,3 +1,4 @@
+import PageLabel from "@/components/(client)/PageLabel/PageLabel";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -12,7 +13,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <header>
+          <PageLabel />
+        </header>
+        {children}
+      </body>
     </html>
   );
 }
