@@ -1,5 +1,6 @@
 import PageLabel from "@/components/(client)/PageLabel/PageLabel";
 import type { Metadata } from "next";
+import styles from './Layout.module.css'
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,6 +18,10 @@ export default function RootLayout({
         <header>
           <PageLabel />
         </header>
+        <nav className={styles.nav}>
+          <a href="/register">Register</a>
+          <a href="/login">Login</a>
+        </nav>
         {children}
       </body>
     </html>

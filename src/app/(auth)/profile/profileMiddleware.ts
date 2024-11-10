@@ -5,15 +5,27 @@ export const profileMiddleware = (req: NextRequest) => {
 
   if (pathname === "/profile") {
     const cookies = req.cookies;
-    const username = cookies.get("username");
-    const password = cookies.get("password");
-    console.log("Profile MiddleWare: ", username, password);
+    const usernameCookie = cookies.get("username");
+    const passwordCookie = cookies.get("password");
+    console.log("Profile MiddleWare: ", usernameCookie, passwordCookie);
 
-    if (username && password) {
-      return NextResponse.next();
+    const hasCookies = usernameCookie && passwordCookie;
+    if (hasCookies) {
+      const { value: username } = usernameCookie;
+      const { value: password } = passwordCookie;
+      if (typeof username === "string" && typeof password === "string") {
+        return NextResponse.next();
+
+        /*
+        return NextResponse.json(
+          { error: "Incorrect Credentials" },
+          { status: 403 }
+        );
+        */
+      }
     }
 
-    return NextResponse.redirect(new URL('/access-denied', req.nextUrl.origin))
+    return NextResponse.redirect(new URL("/access-denied", req.nextUrl.origin));
   }
 };
 
